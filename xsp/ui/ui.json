@@ -1,0 +1,168 @@
+{
+   "style" : "default",
+   "config" : "save_contract_of_food.dat",
+   "width" : 720,
+   "height" : 1240,
+   "cancelscroll" : true,
+   "countdown" : 120,
+   "cancelname" : "取消",
+   "okname" : "确定",
+   "views" : [
+      {
+         "align" : "left",
+         "color" : "100,149,237",
+         "size" : "30",
+         "text" : "功能选择",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "id" : "choose_function",
+         "list" : "重复清图,自动探索",
+         "select" : "0",
+         "size" : "30",
+         "type" : "RadioGroup",
+         "orientation" : "horizontal",
+         "color" : "0,0,0"
+      },
+      {
+         "align" : "left",
+         "color" : "100,149,237",
+         "size" : "20",
+         "text" : "重复清图",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "align" : "left",
+         "color" : "0,0,0",
+         "size" : "25",
+         "text" : "1、请首先进入关卡选择的界面\n2、开始脚本后会跳出弹窗让您确定想要选择地图，点击确定后，请等大概3秒脚本执行，然后再次点击想要进入的地图\n3、如果点击地图后虽然进入战斗准备界面但是脚本没有反应，可以尝试再次点击原本地图所在位置\n",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "id" : "is_dialog",
+         "list" : "是否取消弹窗",
+         "select" : "",
+         "size" : "30",
+         "type" : "CheckBoxGroup",
+         "orientation" : "horizontal",
+         "color" : "0,0,0"
+      },
+      {
+         "id" : "is_interrupt_boss",
+         "list" : "是否开启打断boss",
+         "select" : "",
+         "size" : "30",
+         "type" : "CheckBoxGroup",
+         "orientation" : "horizontal",
+         "color" : "0,0,0"
+      },
+      {
+         "id" : "battle_times",
+         "width" : 700,
+         "height" : 200,
+         "type" : "LinearLayout",
+         "views" : [
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "请输入想要重复战斗次数",
+               "bg" : "255,255,255",
+               "type" : "Label",
+               "width" : 450
+            },
+            {
+               "id" : "battle_times_limit",
+               "align" : "left",
+               "color" : "0,0,0",
+               "kbtype" : "number",
+               "prompt" : "战斗次数",
+               "size" : "25",
+               "text" : "1",
+               "type" : "Edit",
+               "width" : 180
+            }
+         ]
+      },
+      {
+         "align" : "left",
+         "color" : "100,149,237",
+         "size" : "20",
+         "text" : "自动探索",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "align" : "left",
+         "color" : "0,0,0",
+         "size" : "25",
+         "text" : "1、探索功能还在制作中，尚需大量优化\n2、请在主界面开始脚本\n3、距离完全自动还有很一段距离",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "align" : "left",
+         "color" : "0,0,0",
+         "size" : "30",
+         "text" : "请选择要探索的大地图",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "id" : "choose_map",
+         "list" : "格瑞洛,耀之洲,奈芙拉斯特",
+         "select" : "0@2",
+         "size" : "30",
+         "type" : "CheckBoxGroup",
+         "orientation" : "horizontal",
+         "color" : "0,0,225"
+      },
+      {
+         "align" : "left",
+         "color" : "0,0,0",
+         "size" : "30",
+         "text" : "请选择默认要探索的洞穴",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+      {
+         "id" : "cave_number",
+         "list" : "左边的,中间的,右边的",
+         "select" : "1",
+         "size" : "30",
+         "type" : "RadioGroup",
+         "orientation" : "horizontal",
+         "color" : "0,0,0"
+      },
+      {
+         "align" : "left",
+         "color" : "100,149,237",
+         "size" : "20",
+         "text" : "联系QQ",
+         "bg" : "225,225,225",
+         "qq" : "247124910",
+         "type" : "Label"
+      },
+      {
+         "align" : "left",
+         "color" : "200,149,149",
+         "size" : "30",
+         "text" : "提前说明：之后功能齐全后会收费的...",
+         "bg" : "245,225,225",
+         "qq" : "247124910",
+         "type" : "Label"
+      },
+      {
+         "align" : "left",
+         "color" : "100,149,237",
+         "size" : "30",
+         "text" : "功能建议和反馈问题的请进QQ群：532246171",
+         "bg" : "0,0,225",
+         "qq" : "532246171",
+         "type" : "Label"
+      }
+   ]
+}
