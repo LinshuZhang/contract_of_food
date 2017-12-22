@@ -11,8 +11,8 @@ function open_battle_map()
 			dialog("尚未确定关卡所在位置，请点击屏幕上想要打开的关卡", 0);
 		end
 		map_x_tmp,map_y_tmp = catchTouchPoint();
-		map_y = width-map_x_tmp
-		map_x = map_y_tmp
+		map_y = (width-map_x_tmp)/width*750
+		map_x = map_y_tmp/height*1334
 		mSleep(500);
 		logging("已获取要战斗关卡坐标点——> ".."x:"..map_x.." y:"..map_y, 0);
 		mSleep(500)
@@ -46,7 +46,7 @@ lianxie[2] = {954,672}
 lianxie[3] = {1106,666}
 lianxie[4] = {1276,663}
 tianfu = {} --天赋技能从上往下计数
-tianfu[1] = {76,565}
+tianfu[1] = {68,530}
 tianfu[2] = {190,674}
 
 function keep_skill()
@@ -55,11 +55,13 @@ function keep_skill()
 		y = lianxie[lianxie_number][2]
 		color_r, color_g, color_b = getColorRGB(x, y)
 		mSleep(10)
-		if color_r > 130 or color_b>130 or color_g>130 then
+		if color_r > 150 or color_b>150 or color_g>150 then
 			tap(x,y)
 			mSleep(100)
 		end
 		interrupt_boss()
+		mSleep(20)
+		break_ice()
 		mSleep(20)
 	end
 	for tianfu_number = 1,2 do
@@ -73,31 +75,29 @@ function keep_skill()
 		end
 		interrupt_boss()
 		mSleep(20)
+		break_ice()
+		mSleep(20)
 	end
 end
 
-function interrupt_boss1()
-	point = findColors({568, 71, 1285, 593}, 
-		{
-			{x=0,y=0,color=0xfefeff},
-			{x=3,y=0,color=0xfefeff},
-			{x=3,y=3,color=0xfdfefe},
-			{x=0,y=3,color=0xfdfeff},
-			{x=0,y=8,color=0xfdfdfe},
-			{x=0,y=13,color=0xfdfdfe},
-			{x=2,y=14,color=0xfdfdfe},
-			{x=3,y=11,color=0xfdfdfe},
-			{x=3,y=4,color=0xfdfefe}
-		},
-		99, 1, 0, 0)
-	
-	if #point ~= 0 then
+function break_ice()
+point = findColors({0, 0, 749, 1333}, 
+{
+	{x=0,y=0,color=0x519cd4,offset = 0x14140a},
+	{x=12,y=0,color=0x529cd4,offset = 0x14140a},
+	{x=25,y=15,color=0x63a6d9,offset = 0x14140a},
+	{x=12,y=16,color=0x519cd4,offset = 0x14140a},
+	{x=2,y=4,color=0x519cd4,offset = 0x14140a}
+},
+98, 0, 0, 0)
+if #point ~= 0 then
+	sysLog("Point:"..(#point))
 		tmp_x = 0
 		tmp_y = 0
 		for var = 1, #point do
 			boss_x = point[var].x
 			boss_y = point[var].y
-			if boss_x -tmp_x > 10 and boss_y - tmp_y >20 then
+			if boss_x -tmp_x > 20 and boss_y - tmp_y >40 then
 				tap(boss_x,boss_y)
 				mSleep(100)
 				tmp_x = boss_x
@@ -108,24 +108,25 @@ function interrupt_boss1()
 	end
 end
 
-function interrupt_boss2()
+function interrupt_boss3()
 	point = findColors({568, 71, 1285, 593}, 
-		{
-			{x=0,y=0,color=0xf1929d},
-			{x=3,y=4,color=0xfdfdfe},
-			{x=8,y=8,color=0xe08a94},
-			{x=1,y=4,color=0xfdfdfe},
-			{x=6,y=3,color=0xfdfdfe}
-		},
-		98, 1, 0, 0)
+{
+	{x=0,y=0,color=0xd4646c,offset = 0x102020},
+	{x=-22,y=13,color=0xd6636a,offset = 0x102020},
+	{x=-26,y=38,color=0xd26067,offset = 0x102020},
+	{x=21,y=46,color=0xdc6a72,offset = 0x102020},
+	{x=28,y=24,color=0xd26971,offset = 0x102020}
+},
+98, 1, 0, 0)
 	
 	if #point ~= 0 then
+	sysLog("Point:"..(#point))
 		tmp_x = 0
 		tmp_y = 0
 		for var = 1, #point do
 			boss_x = point[var].x
 			boss_y = point[var].y
-			if boss_x -tmp_x > 10 and boss_y - tmp_y >20 then
+			if boss_x -tmp_x > 20 and boss_y - tmp_y >40 then
 				tap(boss_x,boss_y)
 				mSleep(100)
 				tmp_x = boss_x
@@ -159,9 +160,18 @@ function battle_finish()
 end
 
 function interrupt_boss()
+
 	if results.is_interrupt_boss == '0' then
-		interrupt_boss2()
-		interrupt_boss1()
+		interrupt_boss3()
+	end
+end
+
+function is_level_choose_interface()
+	if isColor(752,32,0x79553e,90) and isColor(1058,18,0x79553e,90) then
+		logging("关卡选择界面")
+		return true
+	else
+		return false
 	end
 end
 
@@ -170,7 +180,6 @@ function clear_map()
 	mSleep(2000)
 	while true do
 		keep_skill()
-		interrupt_boss()
 		if is_victory_interface() or is_battle_end_interface() then 
 			if not is_battle_end_interface() then
 				battle_finish() mSleep(3000) 
@@ -180,11 +189,15 @@ function clear_map()
 			end
 			if is_battle_end_interface() then
 				logging("战斗结算界面")
-				battle_finish() mSleep(2000) 
-				battle_finish() mSleep(2000) 
-				break 
+				times = 0
+				while true and times<3 do
+					times = times+1
+					battle_finish() mSleep(2000) 
+					if is_level_choose_interface() then break end
+				end
 			end
-		end
+			if is_level_choose_interface() then break end
+		end	
 	end	
 end
 

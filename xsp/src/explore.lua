@@ -76,7 +76,7 @@ end
 
 function back()
 	logging("返回")
-	tap(60,54)
+	tap(61,53)
 end
 
 function is_choose_cave_interface()
@@ -99,6 +99,15 @@ function choose_cave()
 	elseif results.cave_number == '2' then
 		logging("选择右边洞穴")
 		tap(1047,367)
+	end
+end
+
+function is_cave_choosed_interface()
+	if is_choose_cave_interface() and isColor(1228,600,0xffd5ac,90) then
+		logging("洞穴已选择")
+		return true
+	else
+		return false
 	end
 end
 
@@ -148,7 +157,7 @@ end
 function deal_with_enemy()
 	challenge_enemy() mSleep(2000)
 	while true do
-		mSleep(10000)
+		keep_skill()
 		if is_victory_interface() then
 			close_victory_interface() mSleep(1000)
 			break
@@ -156,44 +165,54 @@ function deal_with_enemy()
 	end
 end
 
+function next_team()
+	tap(1109,641)
+	logging("下一队")
+end
+
 function deal_with_exploring()
-	
-	if is_explore_reward_interface() then
-		sure_reward()
-		mSleep(2000)
-		times = 0
-		while (not is_explore_option_interface() and times<3) do
-			if is_find_box1() then
-				open_first_box()
-				mSleep(2000)
-				sure_reward() mSleep(3000)
-			end
-			if is_find_box2() then
-				open_secornd_box()
-				mSleep(2000)
-				sure_reward() mSleep(3000)
-			end
-			if is_explore_enemy() then
-				deal_with_enemy()
-			end
-			times = times+1
+	times = 0
+	while (not is_explore_option_interface() and times<3) do
+		if is_explore_reward_interface() then
+			sure_reward()
+			mSleep(2000)
 		end
-		explore_continue() mSleep(2000)
-		choose_cave(2) mSleep(2000)
-		do_explore() mSleep(2000)
-		back()
-		mSleep(2000)
-	elseif is_explore_enemy() then
-		deal_with_enemy()
-	elseif is_choose_cave_interface() then
-		choose_cave() mSleep(2000)
-		do_explore() mSleep(2000)
-	elseif is_exploring_interface() then
-		logging("正在探索")
-		back()
-		mSleep(2000)
+		if is_find_box1() then
+			open_first_box()
+			mSleep(2000)
+			sure_reward() mSleep(3000)
+		end
+		if is_find_box2() then
+			open_secornd_box()
+			mSleep(2000)
+			sure_reward() mSleep(3000)
+		end
+		if is_explore_enemy() then
+			deal_with_enemy()
+		end
+		if is_choose_cave_interface() then
+			choose_cave() mSleep(2000)
+			times_change_team = 0
+			while is_cave_choosed_interface() and times<6 do
+				do_explore() mSleep(2000)
+				next_team() mSleep(2000)
+				times_change_team = times_change_team+1
+				if is_exploring_interface() then return true end
+			end
+			if is_exploring_interface() then
+				back()
+				mSleep(2000)
+			else
+			logging("探索用队伍不足")
+			end
+		end
+		if is_exploring_interface() then
+			logging("正在探索")
+			back()
+			mSleep(2000)
+		end
+		times = times+1
 	end
-	
 	if not is_main_interface() then
 		repeat back() mSleep(2000) 
 		until(is_main_interface())
