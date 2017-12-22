@@ -5,10 +5,10 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
 back	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\explore.lua	77;"	f
-battle	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	187;"	f
+battle	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	191;"	f
 battle_finish	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	157;"	f
-battle_times	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	188;"	e
 battle_times	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	192;"	e
+battle_times	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	196;"	e
 battle_times_limit	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\config.lua	6;"	e
 boss_x	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	126;"	e
 boss_x	C:/Users/win/Documents/xspworkspace/contract_of_food/xsp/src\battle.lua	98;"	e

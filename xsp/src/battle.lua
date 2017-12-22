@@ -67,7 +67,7 @@ function keep_skill()
 		y = tianfu[tianfu_number][2]
 		color_r, color_g, color_b = getColorRGB(x, y)
 		mSleep(10)
-		if color_r > 130 or color_b>130 or color_g>130 then
+		if color_r > 150 or color_b>150 or color_g>150 then
 			tap(x,y)
 			mSleep(100)
 		end
@@ -173,10 +173,14 @@ function clear_map()
 		interrupt_boss()
 		if is_victory_interface() or is_battle_end_interface() then 
 			if not is_battle_end_interface() then
-				battle_finish() mSleep(2000) 
+				battle_finish() mSleep(3000) 
+			end
+			if not is_battle_end_interface() then
+				battle_finish() mSleep(3000) 
 			end
 			if is_battle_end_interface() then
 				logging("战斗结算界面")
+				battle_finish() mSleep(2000) 
 				battle_finish() mSleep(2000) 
 				break 
 			end
