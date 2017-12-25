@@ -13,6 +13,17 @@ function tap(x, y)
   touchUp(1, x, y);
 end
 
+function touch_from_to(x1,y1,x2,y2)
+touchDown(1, x1, y1); --在 (150, 550) 按下
+interval_x = (x2-x1)/20
+interval_y = (y2-y1)/20
+for i = 1, 20 do   --使用for循环连续滑动
+    touchMove(1, x1+interval_x*i, y1+interval_y*i); 
+    mSleep(50);        --延迟
+end
+touchUp(1, x2, y2);
+end
+
 function isColor(x,y,c,s)   --x,y为坐标值，c为颜色值，s为相似度，范围0~100。
   local fl,abs = math.floor,math.abs
   s = fl(0xff*(100-s)*0.01)

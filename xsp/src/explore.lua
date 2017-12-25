@@ -74,10 +74,7 @@ function explore_finish()
 	tap(1070,634)
 end
 
-function back()
-	logging("返回")
-	tap(61,53)
-end
+
 
 function is_choose_cave_interface()
 	if isColor(49,53,0xfff3bc,90) and isColor(1241,351,0xc27343,90)
@@ -195,6 +192,9 @@ function deal_with_exploring()
 			times_change_team = 0
 			while is_cave_choosed_interface() and times<6 do
 				do_explore() mSleep(2000)
+				if results.is_leave_first_team == '0' and times==0 then --预留第一队不用于探索
+				next_team() mSleep(2000)
+				end
 				next_team() mSleep(2000)
 				times_change_team = times_change_team+1
 				if is_exploring_interface() then return true end

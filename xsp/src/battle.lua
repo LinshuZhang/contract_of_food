@@ -103,7 +103,7 @@ if #point ~= 0 then
 				tmp_x = boss_x
 				tmp_y = boss_y
 			end
-			if var>1 then break end
+			if var>4 then break end
 		end
 	end
 end

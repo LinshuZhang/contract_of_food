@@ -11,6 +11,8 @@ dofile('tools')
 dofile('explore')
 dofile('order')
 dofile('battle')
+dofile('restaurant')
+dofile('email')
 
 function is_main_interface()
 	return (isColor(806,701,0x9b6d5b,90) 
@@ -18,7 +20,13 @@ function is_main_interface()
 		and isColor(1275,685,0xfff5f4,90))
 end
 
+function back()
+	logging("返回")
+	tap(61,53)
+end
+
 function open_order()
+	logging("打开订单列表")
 	tap(1268,469)
 end
 
@@ -48,4 +56,12 @@ if results.choose_function == '0' then
 	battle()
 elseif results.choose_function == '1' then
 	explore()
+elseif results.choose_function == '2' then
+	if string.find(results.clear_content,'2') then
+		clear_email()		
+	end
+	if string.find(results.clear_content,'0') or string.find(results.clear_content,'1') then
+		clear_restaurant()		
+	end
 end
+
