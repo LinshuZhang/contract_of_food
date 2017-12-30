@@ -50,28 +50,54 @@ function is_find_box2()
 	end
 end
 
-function open_first_box()
+function is_find_box3()
+	if ((isColor(934,427,0xcc6763,90) and isColor(973,421,0xc95d5c,90) )
+	or (isColor(921,434,0xb3765b,90) and isColor(975,443,0xb27257,90))
+		and not isColor(1225,603,0xffd5ac,90))
+	then
+		logging("发现宝箱3")
+		return true
+	else
+		return false
+	end
+end
+
+
+
+function open_box1()
 	logging("打开第一个宝箱")
 	tap(960,413)
 end
 
-function open_secornd_box()
+function open_box2()
 	logging("打开第二个宝箱")
 	tap(1127,404)
 end
 
+function open_box3()
+	logging("打开第三个宝箱")
+	tap(961,368)
+end
+
 function is_explore_option_interface()
-	return isColor(1094,617,0xffc056,90) and isColor(1197,613,0xffc154,90)
+	if isColor(1026,620,0xffbf56,90) and isColor(1186,646,0xffb455,90) then
+		logging("选择探索还是前进")
+		return true
+	else
+		return false
+	end
 end
 
 function explore_continue()
 	logging("继续探索")
 	tap(1232,630)
+	mSleep(1000)
 end
 
 function explore_finish()
 	logging("结束探索")
 	tap(1070,634)
+	mSleep(1000)
 end
 
 
@@ -167,52 +193,72 @@ function next_team()
 	logging("下一队")
 end
 
+function is_cave_continue_interface()
+	if isColor(1073,708,0xffb23f,90) and isColor(1237,634,0xffd5ac,90) then
+		logging("继续探险的洞穴选择界面")
+		return true
+	else
+		return false
+	end
+end
+
 function deal_with_exploring()
 	times = 0
-	while (not is_explore_option_interface() and times<3) do
+	while (not is_exploring_interface()) and times<5 do
+		mSleep(1000)
+		if is_explore_option_interface() then
+			explore_continue()
+		end
 		if is_explore_reward_interface() then
 			sure_reward()
 			mSleep(2000)
 		end
 		if is_find_box1() then
-			open_first_box()
-			mSleep(2000)
+			open_box1()
+			mSleep(3500)
 			sure_reward() mSleep(3000)
 		end
 		if is_find_box2() then
-			open_secornd_box()
-			mSleep(2000)
+			open_box2()
+			mSleep(3500)
+			sure_reward() mSleep(3000)
+		end
+		if is_find_box3() then
+			open_box3()
+			mSleep(3500)
 			sure_reward() mSleep(3000)
 		end
 		if is_explore_enemy() then
 			deal_with_enemy()
 		end
+		if is_cave_continue_interface() then
+			choose_cave() mSleep(2000)
+			tap(1228,669) mSleep(1000) logging("继续探索")		
+		end
 		if is_choose_cave_interface() then
 			choose_cave() mSleep(2000)
 			times_change_team = 0
-			while is_cave_choosed_interface() and times<6 do
-				do_explore() mSleep(2000)
-				if results.is_leave_first_team == '0' and times==0 then --预留第一队不用于探索
-				next_team() mSleep(2000)
+			while is_cave_choosed_interface() and times_change_team<6 do
+				
+				if results.is_leave_first_team == '0' and times_change_team==0 then --预留第一队不用于探索
+					logging("需要留出第一队")
+					next_team() mSleep(2000)
 				end
-				next_team() mSleep(2000)
+				do_explore() mSleep(2000)
 				times_change_team = times_change_team+1
-				if is_exploring_interface() then return true end
+				if is_exploring_interface() then break end
+				next_team() mSleep(2000)
 			end
 			if is_exploring_interface() then
 				back()
 				mSleep(2000)
 			else
-			logging("探索用队伍不足")
+				logging("探索用队伍不足")
 			end
-		end
-		if is_exploring_interface() then
-			logging("正在探索")
-			back()
-			mSleep(2000)
 		end
 		times = times+1
 	end
+	mSleep(1000)
 	if not is_main_interface() then
 		repeat back() mSleep(2000) 
 		until(is_main_interface())
@@ -243,18 +289,3 @@ function keep_explore()
 	end
 end
 
-function explore()
-	keep_explore()
-	start_time_explore = mTime()
-	start_time_explore_record = start_time_explore
-	while true do
-		if (mTime() - start_time_explore_record)>(30*60*1000) then
-			keep_explore()
-			start_time_explore_record = mTime()
-		end
-		shengyu_time = 30 - zhengchu((mTime() - start_time_explore_record),60*1000)
-		logging("等待下次探索检查中,剩余时间还有"..shengyu_time.."分钟")
-		tap(567,54) --保持屏幕激活
-		mSleep(60000)
-	end
-end

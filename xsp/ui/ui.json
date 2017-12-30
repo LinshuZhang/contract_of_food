@@ -18,7 +18,7 @@
       },
       {
          "id" : "choose_function",
-         "list" : "重复清图,自动探索,每日自动清理",
+         "list" : "重复清图,挂机,每日自动清理",
          "select" : "0",
          "size" : "30",
          "type" : "RadioGroup",
@@ -91,7 +91,7 @@
          "align" : "left",
          "color" : "100,149,237",
          "size" : "20",
-         "text" : "自动探索",
+         "text" : "挂机",
          "bg" : "255,255,255",
          "type" : "Label"
       },
@@ -99,9 +99,82 @@
          "align" : "left",
          "color" : "0,0,0",
          "size" : "25",
-         "text" : "1、探索功能尚需优化\n2、请在主界面开始脚本\n3、出现问题请加群反馈",
+         "text" : "1、挂机尚需优化\n2、请在主界面开始脚本\n3、出现问题请加群反馈",
          "bg" : "255,255,255",
          "type" : "Label"
+      },
+	  {
+         "align" : "left",
+         "color" : "100,149,237",
+         "size" : "20",
+         "text" : "挂机内容",
+         "bg" : "255,255,255",
+         "type" : "Label"
+      },
+	  {
+         "id" : "content_guaji",
+         "list" : "自动探索,净化堕神,清理霸王餐,自动备菜",
+         "select" : "0@4",
+         "size" : "30",
+         "type" : "CheckBoxGroup",
+         "orientation" : "horizontal",
+         "color" : "0,0,225"
+      },
+	  {
+         "id" : "battle_times",
+         "width" : 700,
+         "height" : 150,
+         "type" : "LinearLayout",
+         "views" : [
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "挂机每多少分钟检查一次（之后再根据挂机内容进行划分）",
+               "bg" : "255,255,255",
+               "type" : "Label",
+               "width" : 450
+            },
+            {
+               "id" : "waiting_time",
+               "align" : "left",
+               "color" : "0,0,0",
+               "kbtype" : "number",
+               "prompt" : "检测挂机检测间隔",
+               "size" : "25",
+               "text" : "15",
+               "type" : "Edit",
+               "width" : 200
+            }
+         ]
+      },
+	  {
+         "id" : "battle_times",
+         "width" : 700,
+         "height" : 150,
+         "type" : "LinearLayout",
+         "views" : [
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "要自动备菜选第几个菜品",
+               "bg" : "255,255,255",
+               "type" : "Label",
+               "width" : 450
+            },
+            {
+               "id" : "food_number",
+               "align" : "left",
+               "color" : "0,0,0",
+               "kbtype" : "number",
+               "prompt" : "1-9",
+               "size" : "25",
+               "text" : "1",
+               "type" : "Edit",
+               "width" : 200
+            }
+         ]
       },
 	  {
 	      "id" : "is_leave_first_team",
@@ -146,13 +219,14 @@
          "orientation" : "horizontal",
          "color" : "0,0,0"
       },
+	  
 	  {
-	      "align" : "left",
-	      "color" : "100,149,237",
-	      "size" : "30",
-	      "text" : "每日自动清理",
-	      "bg" : "255,255,255",
-	      "type" : "Label"
+         "align" : "left",
+         "color" : "0,0,0",
+         "size" : "30",
+         "text" : "要清理的内容",
+         "bg" : "100,149,237",
+         "type" : "Label"
       },
 	  {
 	      "id" : "clear_content",

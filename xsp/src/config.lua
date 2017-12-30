@@ -6,3 +6,5 @@ end
 battle_times_limit = tonumber(results.battle_times_limit)
 if results.cave_number == '' then results.cave_number='1' end
 cave_number = tonumber(results.cave_number)
+waiting_time = tonumber(results.waiting_time)
+food_number = tonumber(results.food_number)

@@ -34,15 +34,15 @@ function is_restaurant_interface()
 end
 
 function find_bawangcan()
-x, y = findColor({0, 0, 1333, 749}, 
-{
-	{x=0,y=0,color=0xffffff,offset = 0x090909},
-	{x=1,y=11,color=0x3d2b26,offset = 0x090909},
-	{x=8,y=11,color=0x402b26,offset = 0x090909},
-	{x=10,y=17,color=0x3e2b26,offset = 0x090909}
-},
-99, 0, 0, 0)
-if x > -1 then
+	x, y = findColor({0, 0, 1333, 749}, 
+		{
+			{x=0,y=0,color=0xffffff,offset = 0x090909},
+			{x=1,y=11,color=0x3d2b26,offset = 0x090909},
+			{x=8,y=11,color=0x402b26,offset = 0x090909},
+			{x=10,y=17,color=0x3e2b26,offset = 0x090909}
+		},
+		99, 0, 0, 0)
+	if x > -1 then
 		logging("发现霸王餐")
 		tap(x,y+80)
 		mSleep(1500)
@@ -208,7 +208,7 @@ function kill_lubi_in_restaurant_of_friend()
 		tap(747,446) logging("确定猎杀") mSleep(3000)
 		tap(368,719) logging("点击空白确定收获") mSleep(2000)
 		if not is_friend_restaurant() then 
-		tap(368,719) logging("点击空白确定收获") mSleep(2000)
+			tap(368,719) logging("点击空白确定收获") mSleep(2000)
 		end
 	end
 end
@@ -230,6 +230,7 @@ function deal_with_lubi_of_friend()
 			end
 			kill_lubi_in_restaurant_of_friend()
 			k2=k2+1
+			logging("好友露比猎杀次数: "..k2)
 		else
 			break
 		end
@@ -237,6 +238,23 @@ function deal_with_lubi_of_friend()
 	repeat back() mSleep(1500)
 	until(is_restaurant_interface())
 	logging("回到餐厅界面") mSleep(1000)
+end
+
+function clear_bawangcan()
+	repeat to_jingying() mSleep(2000)
+	until(is_jingying_interface())
+	open_restaurant() mSleep(2000)
+	repeat sure_restaurant_reward() mSleep(2000)
+	until(is_restaurant_interface())
+	
+	deal_with_bawangcan()
+	if string.find(results.content_guaji,'3') then
+		 auto_ready_food()
+	end
+	repeat back() mSleep(1000)
+	until(is_jingying_interface()) logging("回到经营界面") mSleep(1000)
+	repeat tap(1272,287) mSleep(1000) 
+	until(is_main_interface()) logging("回到主界面") mSleep(1000)
 end
 
 function clear_restaurant()
@@ -258,3 +276,93 @@ function clear_restaurant()
 end
 
 --Todo: 次数满的时候进行自动退出
+
+function open_ready_food()
+	tap(848,689)
+	logging("打开备菜")
+	mSleep(2000)
+end
+
+function is_ready_food_interface()
+	if isColor(124,114,0xfffaf5,90) 
+	and isColor(367,500,0xf2eff9,90) 
+	and isColor(441,498,0xab9e8b,90) then
+		logging("成功进入备菜窗口")
+		return true
+	else
+		return false
+	end
+end
+
+function is_food_empty()
+	for food_space_number = 1,4 do
+		if isColor(632.5+130.5*food_space_number,527,0xe5b5c7,90) then
+			logging("橱窗"..food_space_number.."为空")
+			return true
+		end
+	end
+	return false
+end
+
+function is_chief_busy(chief_number)
+	if isColor(215+338*(chief_number-1),496,0xbab9b9,90) then
+		return true
+	else
+		return false
+	end
+end
+
+function choose_hearth(hearth_number)
+	if hearth_number==1 then
+		tap(219,503)
+		logging("选择左边的灶台")
+	elseif hearth_number==2 then
+		tap(546,500)
+		logging("选择右边的灶台")
+	end
+end
+
+function choose_food(food_number)
+	x = 850+(food_number-1)%3*187.5
+	y = 235+zhengchu((food_number-1),3)*204.5
+	tap(x,y)
+	logging("选择第"..food_number.."个食物")
+	mSleep(1000)
+	tap(573,661) --确认制作
+	mSleep(1000)
+	
+end
+
+
+
+function is_menu_open()
+	if isColor(783,82,0xab6e4e,90) and isColor(1044,83,0xe9e0d9,90) then
+		logging("菜单已经打开")
+		return true
+	else return false
+	end
+end
+
+function auto_ready_food()
+	open_ready_food()
+	if is_ready_food_interface() then
+		if is_food_empty() then
+			logging("还有空的橱窗")
+			for hearth_number = 1,2 do
+				if not is_chief_busy(hearth_number) then 
+					choose_hearth(hearth_number)
+					mSleep(2000)
+					if is_menu_open() then
+						choose_food(food_number)
+					else
+						logging("无法打开菜单，可能无厨师")
+					end
+				else
+					logging("厨师"..hearth_number.."正在备菜")
+				end
+			end
+		else
+			logging("橱窗已满")
+		end
+	end
+end
