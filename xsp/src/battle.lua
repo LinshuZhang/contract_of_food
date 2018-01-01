@@ -1,9 +1,11 @@
 function open_battle_map()
 	if map_x and map_y then
 		logging("再次进入关卡，已经胜利"..battle_times.."次")
+		repeat 
 		tap(map_x,map_y)
 		mSleep(2000)
 		sysLog("尝试进入关卡")		
+		until(is_battle_ready_interface())
 	else
 		if results.is_dialog=='0' then
 			logging("尚未确定关卡所在位置，请点击屏幕上想要打开的关卡")

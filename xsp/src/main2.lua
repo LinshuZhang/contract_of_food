@@ -1,3 +1,3 @@
-if string.find('abc','c') then
-print(1)
+for i = 1,string.len('abd') do
+print(string.sub('adb',i,i))
 end

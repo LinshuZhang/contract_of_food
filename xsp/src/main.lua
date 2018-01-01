@@ -6,14 +6,15 @@ similar_rate = 93
 touch_interval = 1000
 time_hold = 250
 setScreenScale(750,1334)
-dofile('config')
 dofile('tools')
+dofile('config')
 dofile('explore')
 dofile('order')
 dofile('battle')
 dofile('restaurant')
 dofile('email')
 dofile('duoshen')
+dofile('yiji')
 
 function is_main_interface()
 	return (isColor(806,701,0x9b6d5b,90) 
@@ -79,8 +80,7 @@ function do_guaji()
 		logging("自动堕神")
 		clear_duoshen()
 	end
-	if string.find(results.content_guaji,'2') then
-		logging("清理霸王餐")
+	if string.find(results.content_guaji,'2') or string.find(results.content_guaji,'2') then
 		clear_bawangcan()
 	end
 end
@@ -96,5 +96,7 @@ elseif results.choose_function == '2' then
 	if string.find(results.clear_content,'0') or string.find(results.clear_content,'1') then
 		clear_restaurant()		
 	end
+elseif results.choose_function == '3' then
+	auto_yiji()
 end
 

@@ -14,7 +14,7 @@ function is_jingying_interface()
 end
 
 function open_restaurant()
-	tap(781,480)
+	tap(778,525)
 	logging("进入餐厅")
 end
 
@@ -242,13 +242,19 @@ end
 
 function clear_bawangcan()
 	repeat to_jingying() mSleep(2000)
-	until(is_jingying_interface())
-	open_restaurant() mSleep(2000)
-	repeat sure_restaurant_reward() mSleep(2000)
+	until(is_jingying_interface())	
+	repeat open_restaurant() 
+	mSleep(2000) 
+	sure_restaurant_reward() 
+	mSleep(2000)
 	until(is_restaurant_interface())
-	
+	if string.find(results.content_guaji,'2') then
+	logging("清理霸王餐")
 	deal_with_bawangcan()
+	end
+	mSleep(1000)
 	if string.find(results.content_guaji,'3') then
+	logging("自动备菜")
 		 auto_ready_food()
 	end
 	repeat back() mSleep(1000)

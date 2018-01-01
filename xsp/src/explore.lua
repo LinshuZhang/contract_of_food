@@ -202,6 +202,21 @@ function is_cave_continue_interface()
 	end
 end
 
+function is_add_xinxian_interface()
+if isColor(1226,295,0xffd3a8,90) and isColor(1246,642,0x89c72f,90) then
+logging("新鲜度消耗完毕")
+return true
+else
+return false
+end
+end
+
+function explore_retreat()
+tap(1038,708)
+logging("撤退")
+mSleep(1000)
+end
+
 function deal_with_exploring()
 	times = 0
 	while (not is_exploring_interface()) and times<5 do
@@ -233,7 +248,14 @@ function deal_with_exploring()
 		end
 		if is_cave_continue_interface() then
 			choose_cave() mSleep(2000)
-			tap(1228,669) mSleep(1000) logging("继续探索")		
+			tap(1228,669) mSleep(1000) logging("继续探索")
+			if is_add_xinxian_interface() then
+			back()
+			explore_retreat()
+			tap(1217,685) --关闭
+			mSleep(1000)
+			
+			end
 		end
 		if is_choose_cave_interface() then
 			choose_cave() mSleep(2000)

@@ -9,277 +9,470 @@
    "okname" : "确定",
    "views" : [
       {
-         "align" : "left",
-         "color" : "100,149,237",
-         "size" : "30",
-         "text" : "功能选择",
-         "bg" : "255,255,255",
-         "type" : "Label"
+         "text" : "基本设置",
+         "type" : "Page",
+         "views" : [
+            {
+               "align" : "left",
+               "color" : "100,149,237",
+               "size" : "30",
+               "text" : "功能选择",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "choose_function",
+               "list" : "重复清图,挂机,每日自动清理,遗迹（初级版本）",
+               "select" : "0",
+               "size" : "30",
+               "type" : "RadioGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "align" : "left",
+               "color" : "100,149,237",
+               "size" : "20",
+               "text" : "重复清图",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "25",
+               "text" : "1、请首先进入关卡选择的界面\n2、开始脚本后会跳出弹窗让您确定想要选择地图，点击确定后，请等大概3秒脚本执行，然后再次点击想要进入的地图\n3、如果点击地图后虽然进入战斗准备界面但是脚本没有反应，可以尝试再次点击原本地图所在位置\n",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "is_dialog",
+               "list" : "是否取消弹窗",
+               "select" : "",
+               "size" : "30",
+               "type" : "CheckBoxGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "id" : "is_interrupt_boss",
+               "list" : "是否开启打断boss",
+               "select" : "",
+               "size" : "30",
+               "type" : "CheckBoxGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "id" : "battle_times",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "请输入想要重复战斗次数",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "battle_times_limit",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "战斗次数",
+                     "size" : "25",
+                     "text" : "1",
+                     "type" : "Edit",
+                     "width" : 180
+                  }
+               ]
+            },
+            {
+               "align" : "left",
+               "color" : "100,149,237",
+               "size" : "20",
+               "text" : "挂机",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "25",
+               "text" : "1、挂机尚需优化\n2、请在主界面开始脚本\n3、出现问题请加群反馈",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "align" : "left",
+               "color" : "100,149,237",
+               "size" : "20",
+               "text" : "挂机内容",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "content_guaji",
+               "list" : "自动探索,净化堕神,清理霸王餐,自动备菜",
+               "select" : "0@4",
+               "size" : "30",
+               "type" : "CheckBoxGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,225"
+            },
+            {
+               "id" : "battle_times",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "挂机每多少分钟检查一次（之后再根据挂机内容进行划分）",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "waiting_time",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "检测挂机检测间隔",
+                     "size" : "25",
+                     "text" : "15",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
+            },
+            {
+               "id" : "battle_times",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "要自动备菜选第几个菜品",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "food_number",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "1-9",
+                     "size" : "25",
+                     "text" : "1",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
+            },
+            {
+               "id" : "is_leave_first_team",
+               "list" : "是否预留第一队不用于探索",
+               "select" : "0",
+               "size" : "30",
+               "type" : "CheckBoxGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,225"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "请选择要探索的大地图",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "choose_map",
+               "list" : "格瑞洛,耀之洲,奈芙拉斯特",
+               "select" : "0@2",
+               "size" : "30",
+               "type" : "CheckBoxGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,225"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "请选择默认要探索的洞穴",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "cave_number",
+               "list" : "左边的,中间的,右边的",
+               "select" : "1",
+               "size" : "30",
+               "type" : "RadioGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "要清理的内容",
+               "bg" : "100,149,237",
+               "type" : "Label"
+            },
+            {
+               "id" : "clear_content",
+               "list" : "厨房霸王餐,好友露比,清理邮箱",
+               "select" : "0@2",
+               "size" : "30",
+               "type" : "CheckBoxGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "对待霸王餐如何处理",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "deal_with_bawangcan",
+               "list" : "教训他,放弃收款,求助",
+               "select" : "0",
+               "size" : "30",
+               "type" : "RadioGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "align" : "left",
+               "color" : "0,0,0",
+               "size" : "30",
+               "text" : "自动编队还是已经编队",
+               "bg" : "255,255,255",
+               "type" : "Label"
+            },
+            {
+               "id" : "auto_team",
+               "list" : "脚本自动编队,已经编队",
+               "select" : "0",
+               "size" : "30",
+               "type" : "RadioGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
+            },
+            {
+               "align" : "left",
+               "color" : "100,149,237",
+               "size" : "20",
+               "text" : "联系QQ",
+               "bg" : "225,225,225",
+               "qq" : "247124910",
+               "type" : "Label"
+            },
+            {
+               "align" : "left",
+               "color" : "200,149,149",
+               "size" : "30",
+               "text" : "提前说明：之后功能齐全后会收费的...",
+               "bg" : "245,225,225",
+               "qq" : "247124910",
+               "type" : "Label"
+            },
+            {
+               "align" : "left",
+               "color" : "100,149,237",
+               "size" : "30",
+               "text" : "功能建议和反馈问题的请进QQ群：138806548",
+               "bg" : "0,0,225",
+               "qq" : "138806548",
+               "type" : "Label"
+            }
+         ]
       },
       {
-         "id" : "choose_function",
-         "list" : "重复清图,挂机,每日自动清理",
-         "select" : "0",
-         "size" : "30",
-         "type" : "RadioGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,0"
-      },
-      {
-         "align" : "left",
-         "color" : "100,149,237",
-         "size" : "20",
-         "text" : "重复清图",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-      {
-         "align" : "left",
-         "color" : "0,0,0",
-         "size" : "25",
-         "text" : "1、请首先进入关卡选择的界面\n2、开始脚本后会跳出弹窗让您确定想要选择地图，点击确定后，请等大概3秒脚本执行，然后再次点击想要进入的地图\n3、如果点击地图后虽然进入战斗准备界面但是脚本没有反应，可以尝试再次点击原本地图所在位置\n",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-      {
-         "id" : "is_dialog",
-         "list" : "是否取消弹窗",
-         "select" : "",
-         "size" : "30",
-         "type" : "CheckBoxGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,0"
-      },
-      {
-         "id" : "is_interrupt_boss",
-         "list" : "是否开启打断boss",
-         "select" : "",
-         "size" : "30",
-         "type" : "CheckBoxGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,0"
-      },
-      {
-         "id" : "battle_times",
-         "width" : 700,
-         "height" : 150,
-         "type" : "LinearLayout",
+         "text" : "遗迹设置",
+         "type" : "Page",
          "views" : [
             {
                "align" : "left",
                "color" : "0,0,0",
                "size" : "30",
-               "text" : "请输入想要重复战斗次数",
+               "text" : "选择预编辑队伍配置，用数字代表第几个人物，需要让第一排和第二排加起来共10位数",
                "bg" : "255,255,255",
-               "type" : "Label",
-               "width" : 450
+               "type" : "Label"
             },
             {
-               "id" : "battle_times_limit",
-               "align" : "left",
-               "color" : "0,0,0",
-               "kbtype" : "number",
-               "prompt" : "战斗次数",
-               "size" : "25",
-               "text" : "1",
-               "type" : "Edit",
-               "width" : 180
-            }
-         ]
-      },
-      {
-         "align" : "left",
-         "color" : "100,149,237",
-         "size" : "20",
-         "text" : "挂机",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-      {
-         "align" : "left",
-         "color" : "0,0,0",
-         "size" : "25",
-         "text" : "1、挂机尚需优化\n2、请在主界面开始脚本\n3、出现问题请加群反馈",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-	  {
-         "align" : "left",
-         "color" : "100,149,237",
-         "size" : "20",
-         "text" : "挂机内容",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-	  {
-         "id" : "content_guaji",
-         "list" : "自动探索,净化堕神,清理霸王餐,自动备菜",
-         "select" : "0@4",
-         "size" : "30",
-         "type" : "CheckBoxGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,225"
-      },
-	  {
-         "id" : "battle_times",
-         "width" : 700,
-         "height" : 150,
-         "type" : "LinearLayout",
-         "views" : [
+               "id" : "prepared_team",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "第一排",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "first_row_choosed",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "1-7",
+                     "size" : "25",
+                     "text" : "12345",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
+            },
+            {
+               "id" : "prepared_team",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "第二排",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "second_row_choosed",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "1-7",
+                     "size" : "25",
+                     "text" : "12345",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
+            },
+            {
+               "id" : "prepared_team",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "遗迹中战斗次数",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "yiji_battle_times",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "还要在遗迹中再战斗多少次",
+                     "size" : "25",
+                     "text" : "20",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
+            },
             {
                "align" : "left",
                "color" : "0,0,0",
                "size" : "30",
-               "text" : "挂机每多少分钟检查一次（之后再根据挂机内容进行划分）",
+               "text" : "遗迹进入方式",
                "bg" : "255,255,255",
-               "type" : "Label",
-               "width" : 450
+               "type" : "Label"
             },
             {
-               "id" : "waiting_time",
-               "align" : "left",
-               "color" : "0,0,0",
-               "kbtype" : "number",
-               "prompt" : "检测挂机检测间隔",
-               "size" : "25",
-               "text" : "15",
-               "type" : "Edit",
-               "width" : 200
-            }
-         ]
-      },
-	  {
-         "id" : "battle_times",
-         "width" : 700,
-         "height" : 150,
-         "type" : "LinearLayout",
-         "views" : [
-            {
-               "align" : "left",
-               "color" : "0,0,0",
+               "id" : "how_to_come_into_yiji",
+               "list" : "直接进入,扫荡进入",
+               "select" : "0",
                "size" : "30",
-               "text" : "要自动备菜选第几个菜品",
-               "bg" : "255,255,255",
-               "type" : "Label",
-               "width" : 450
+               "type" : "RadioGroup",
+               "orientation" : "horizontal",
+               "color" : "0,0,0"
             },
             {
-               "id" : "food_number",
-               "align" : "left",
-               "color" : "0,0,0",
-               "kbtype" : "number",
-               "prompt" : "1-9",
-               "size" : "25",
-               "text" : "1",
-               "type" : "Edit",
-               "width" : 200
+               "id" : "battle_times",
+               "width" : 700,
+               "height" : 150,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "选择第几个天赋，用两位数代表要选择的天赋",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "tianfu_choosed",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "12",
+                     "size" : "25",
+                     "text" : "12",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
+            },
+            {
+               "id" : "yiji_team",
+               "width" : 700,
+               "height" : 200,
+               "type" : "LinearLayout",
+               "views" : [
+                  {
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "size" : "30",
+                     "text" : "选择遗迹中五人队的组成，用数字代表第几个角色，用5位数代表人物配置，最后一位为0代表选择第10个角色",
+                     "bg" : "255,255,255",
+                     "type" : "Label",
+                     "width" : 450
+                  },
+                  {
+                     "id" : "team_choosed",
+                     "align" : "left",
+                     "color" : "0,0,0",
+                     "kbtype" : "number",
+                     "prompt" : "12",
+                     "size" : "25",
+                     "text" : "12345",
+                     "type" : "Edit",
+                     "width" : 200
+                  }
+               ]
             }
          ]
-      },
-	  {
-	      "id" : "is_leave_first_team",
-	      "list" : "是否预留第一队不用于探索",
-	      "select" : "0",
-	      "size" : "30",
-	      "type" : "CheckBoxGroup",
-	      "orientation" : "horizontal",
-	      "color" : "0,0,225"
-      },
-      {
-         "align" : "left",
-         "color" : "0,0,0",
-         "size" : "30",
-         "text" : "请选择要探索的大地图",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-      {
-         "id" : "choose_map",
-         "list" : "格瑞洛,耀之洲,奈芙拉斯特",
-         "select" : "0@2",
-         "size" : "30",
-         "type" : "CheckBoxGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,225"
-      },
-      {
-         "align" : "left",
-         "color" : "0,0,0",
-         "size" : "30",
-         "text" : "请选择默认要探索的洞穴",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-      {
-         "id" : "cave_number",
-         "list" : "左边的,中间的,右边的",
-         "select" : "1",
-         "size" : "30",
-         "type" : "RadioGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,0"
-      },
-	  
-	  {
-         "align" : "left",
-         "color" : "0,0,0",
-         "size" : "30",
-         "text" : "要清理的内容",
-         "bg" : "100,149,237",
-         "type" : "Label"
-      },
-	  {
-	      "id" : "clear_content",
-	      "list" : "厨房霸王餐,好友露比,清理邮箱",
-	      "select" : "0@2",
-	      "size" : "30",
-	      "type" : "CheckBoxGroup",
-	      "orientation" : "horizontal",
-	      "color" : "0,0,0"
-      },
-      {
-         "align" : "left",
-         "color" : "0,0,0",
-         "size" : "30",
-         "text" : "对待霸王餐如何处理",
-         "bg" : "255,255,255",
-         "type" : "Label"
-      },
-      {
-         "id" : "deal_with_bawangcan",
-         "list" : "教训他,放弃收款,求助",
-         "select" : "0",
-         "size" : "30",
-         "type" : "RadioGroup",
-         "orientation" : "horizontal",
-         "color" : "0,0,0"
-      },
-      {
-         "align" : "left",
-         "color" : "100,149,237",
-         "size" : "20",
-         "text" : "联系QQ",
-         "bg" : "225,225,225",
-         "qq" : "247124910",
-         "type" : "Label"
-      },
-      {
-         "align" : "left",
-         "color" : "200,149,149",
-         "size" : "30",
-         "text" : "提前说明：之后功能齐全后会收费的...",
-         "bg" : "245,225,225",
-         "qq" : "247124910",
-         "type" : "Label"
-      },
-      {
-         "align" : "left",
-         "color" : "100,149,237",
-         "size" : "30",
-         "text" : "功能建议和反馈问题的请进QQ群：532246171",
-         "bg" : "0,0,225",
-         "qq" : "532246171",
-         "type" : "Label"
       }
    ]
 }
