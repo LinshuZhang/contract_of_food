@@ -16,4 +16,4 @@ function string_iter (content)
     end
 end
 
-iter = string_iter('ddoliuern')
+iter = tonumber(string_iter('12345'))
