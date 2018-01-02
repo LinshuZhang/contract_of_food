@@ -335,8 +335,7 @@ function choose_food(food_number)
 	logging("选择第"..food_number.."个食物")
 	mSleep(1000)
 	tap(573,661) --确认制作
-	mSleep(1000)
-	
+	mSleep(1000)	
 end
 
 
@@ -359,6 +358,7 @@ function auto_ready_food()
 					choose_hearth(hearth_number)
 					mSleep(2000)
 					if is_menu_open() then
+						food_number = tonumber(food_number_iter())
 						choose_food(food_number)
 					else
 						logging("无法打开菜单，可能无厨师")

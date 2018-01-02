@@ -32,7 +32,7 @@
             {
                "align" : "left",
                "color" : "100,149,237",
-               "size" : "20",
+               "size" : "30",
                "text" : "重复清图",
                "bg" : "255,255,255",
                "type" : "Label"
@@ -94,7 +94,7 @@
             {
                "align" : "left",
                "color" : "100,149,237",
-               "size" : "20",
+               "size" : "30",
                "text" : "挂机",
                "bg" : "255,255,255",
                "type" : "Label"
@@ -109,8 +109,8 @@
             },
             {
                "align" : "left",
-               "color" : "100,149,237",
-               "size" : "20",
+               "color" : "0,0,0",
+               "size" : "30",
                "text" : "挂机内容",
                "bg" : "255,255,255",
                "type" : "Label"
@@ -162,7 +162,7 @@
                      "align" : "left",
                      "color" : "0,0,0",
                      "size" : "30",
-                     "text" : "要自动备菜选第几个菜品",
+                     "text" : "要自动备菜选第几个菜品（根据数字轮流备选）",
                      "bg" : "255,255,255",
                      "type" : "Label",
                      "width" : 450
@@ -174,7 +174,7 @@
                      "kbtype" : "number",
                      "prompt" : "1-9",
                      "size" : "25",
-                     "text" : "1",
+                     "text" : "123",
                      "type" : "Edit",
                      "width" : 200
                   }
@@ -204,7 +204,7 @@
                "size" : "30",
                "type" : "CheckBoxGroup",
                "orientation" : "horizontal",
-               "color" : "0,0,225"
+               "color" : "0,0,0"
             },
             {
                "align" : "left",
@@ -251,23 +251,6 @@
             {
                "id" : "deal_with_bawangcan",
                "list" : "教训他,放弃收款,求助",
-               "select" : "0",
-               "size" : "30",
-               "type" : "RadioGroup",
-               "orientation" : "horizontal",
-               "color" : "0,0,0"
-            },
-            {
-               "align" : "left",
-               "color" : "0,0,0",
-               "size" : "30",
-               "text" : "自动编队还是已经编队",
-               "bg" : "255,255,255",
-               "type" : "Label"
-            },
-            {
-               "id" : "auto_team",
-               "list" : "脚本自动编队,已经编队",
                "select" : "0",
                "size" : "30",
                "type" : "RadioGroup",

@@ -55,6 +55,19 @@ function is_color_vertical_move(x,y,color,similar,movement)
     or isColor(x,y,color,similar))
 end
 
+function string_iter (content)
+    local i = 0
+    local n = string.len(content)
+    return function ()
+       i = i + 1
+       if i <= n then 
+        return string.sub(content,i,i) 
+    else
+        i = 1
+        return string.sub(content,i,i)
+        end
+    end
+end
 
 function print_color(x,y)
   color_r, color_g, color_b = getColorRGB(x,y)
