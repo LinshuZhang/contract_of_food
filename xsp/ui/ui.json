@@ -199,7 +199,7 @@
             },
             {
                "id" : "choose_map",
-               "list" : "格瑞洛,耀之洲,奈芙拉斯特",
+               "list" : "格瑞洛,耀之洲,奈芙拉斯特,樱之岛",
                "select" : "0@2",
                "size" : "30",
                "type" : "CheckBoxGroup",

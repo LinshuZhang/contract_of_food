@@ -54,6 +54,11 @@ function go_to_naifu()
 	tap(428,201)
 end
 
+function go_to_yingzhidao()
+	logging("去樱之岛")
+	tap(152,250)
+end
+
 function guaji()
 	do_guaji()
 	start_time_guaji = mTime()

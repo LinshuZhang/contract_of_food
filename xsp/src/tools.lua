@@ -1,6 +1,6 @@
 function logging(str)
   toast(str)
-  sysLog(str)
+  --sysLog(str)
 end
 
 function zhengchu(x,y)

@@ -4,7 +4,7 @@ function open_battle_map()
 		repeat 
 		tap(map_x,map_y)
 		mSleep(2000)
-		sysLog("尝试进入关卡")		
+		--sysLog("尝试进入关卡")		
 		until(is_battle_ready_interface())
 	else
 		if results.is_dialog=='0' then
@@ -93,7 +93,7 @@ point = findColors({0, 0, 749, 1333},
 },
 98, 0, 0, 0)
 if #point ~= 0 then
-	sysLog("Point:"..(#point))
+	--sysLog("Point:"..(#point))
 		tmp_x = 0
 		tmp_y = 0
 		for var = 1, #point do
@@ -122,7 +122,7 @@ function interrupt_boss3()
 98, 1, 0, 0)
 	
 	if #point ~= 0 then
-	sysLog("Point:"..(#point))
+	--sysLog("Point:"..(#point))
 		tmp_x = 0
 		tmp_y = 0
 		for var = 1, #point do
