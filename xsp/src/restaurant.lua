@@ -92,24 +92,7 @@ function deal_with_bawangcan()
 			keep_skill()
 			while true do
 				keep_skill()
-				if is_victory_interface() or is_battle_end_interface() then 
-					if not is_battle_end_interface() then
-						battle_finish() mSleep(3000) 
-					end
-					if not is_battle_end_interface() then
-						battle_finish() mSleep(3000) 
-					end
-					if is_battle_end_interface() then
-						logging("战斗结算界面")
-						times = 0
-						while true and times<3 do
-							times = times+1
-							battle_finish() mSleep(2000) 
-							if is_restaurant_interface() then break end
-						end
-					end
-					if is_restaurant_interface() then break end
-				end	
+				battle_finish()
 			end
 		elseif results.deal_with_bawangcan == '1' then
 			bawangcan_give_up()

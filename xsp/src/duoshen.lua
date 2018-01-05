@@ -23,7 +23,8 @@ function get_duoshen_space_limit()
 	for duoshen_number = 5,1,-1 do
 		if is_duoshen_space_open(duoshen_number) then 
 		logging("堕神位置开启至第"..duoshen_number.."个")
-		return duoshen_number end
+		return duoshen_number 
+	end
 	end
 end
 

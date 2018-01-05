@@ -158,7 +158,9 @@ function is_battle_end_interface()
 end
 
 function battle_finish()
-	tap(1240,703)
+	while is_victory_interface() or is_battle_end_interface() do
+		tap(1240,703) mSleep(2000) 
+	end
 end
 
 function interrupt_boss()
@@ -181,25 +183,8 @@ function clear_map()
 	start_battle()
 	mSleep(2000)
 	while true do
-		keep_skill()
-		if is_victory_interface() or is_battle_end_interface() then 
-			if not is_battle_end_interface() then
-				battle_finish() mSleep(3000) 
-			end
-			if not is_battle_end_interface() then
-				battle_finish() mSleep(3000) 
-			end
-			if is_battle_end_interface() then
-				logging("战斗结算界面")
-				times = 0
-				while true and times<3 do
-					times = times+1
-					battle_finish() mSleep(2000) 
-					if is_level_choose_interface() then break end
-				end
-			end
-			if is_level_choose_interface() then break end
-		end	
+		keep_skill()	
+		battle_finish()
 	end	
 end
 

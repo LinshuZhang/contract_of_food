@@ -129,24 +129,7 @@ end
 function yiji_battle()
 	while true do
 		keep_skill()
-		if is_victory_interface() or is_battle_end_interface() then 
-			if not is_battle_end_interface() then
-				battle_finish() mSleep(3000) 
-			end
-			if not is_battle_end_interface() then
-				battle_finish() mSleep(3000) 
-			end
-			if is_battle_end_interface() then
-				logging("战斗结算界面")
-				times = 0
-				while true and times<3 do
-					times = times+1
-					battle_finish() mSleep(2000) 
-					if is_team_after_edit() or is_in_yiji() then break end
-				end
-			end
-			if is_team_after_edit() or is_in_yiji() then break end
-		end	
+		battle_finish()
 	end
 end
 
