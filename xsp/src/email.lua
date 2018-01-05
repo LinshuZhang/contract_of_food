@@ -1,5 +1,5 @@
 function open_email()
-tap(928,95) logging("打开邮箱") mSleep(1000) 
+tap(928,95) logging("打开邮箱") mSleep(2000) 
 end
 
 function is_email_interface()

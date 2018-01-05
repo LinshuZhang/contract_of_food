@@ -1,6 +1,6 @@
 function logging(str)
   toast(str)
-  --sysLog(str)
+  sysLog(str)
 end
 
 function zhengchu(x,y)
@@ -9,7 +9,7 @@ end
 
 function tap(x, y)
   touchDown(1, x, y);
-  mSleep(time_hold);
+  mSleep(50);
   touchUp(1, x, y);
 end
 

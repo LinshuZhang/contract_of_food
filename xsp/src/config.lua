@@ -32,3 +32,8 @@ dialog("请确认队伍编辑是5位数")
 end
 
 food_number_iter = string_iter(results.food_number)
+
+if string.find(results.is_logging,0) then 
+	function logging() 
+	end
+end

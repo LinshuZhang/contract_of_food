@@ -85,10 +85,12 @@ function do_guaji()
 		logging("自动堕神")
 		clear_duoshen()
 	end
-	if string.find(results.content_guaji,'2') or string.find(results.content_guaji,'2') then
+	if string.find(results.content_guaji,'2') or string.find(results.content_guaji,'3') then
 		clear_bawangcan()
 	end
 end
+
+--is_bawangcan_interface()
 
 if results.choose_function == '0' then
 	battle()

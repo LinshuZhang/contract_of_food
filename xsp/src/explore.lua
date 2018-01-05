@@ -297,26 +297,26 @@ function keep_explore()
 		logging("在主界面")
 		if string.find(results.choose_map,'0') then
 			open_map() mSleep(2000)
-			go_to_geruiluo() mSleep(2000)
-			go_to_beilidao() mSleep(3000)
+			go_to_geruiluo() repeat mSleep(2000) until(is_main_interface())
+			go_to_beilidao() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 		if string.find(results.choose_map,'1') then
 			open_map() mSleep(2000)
-			go_to_yaozhizhou() mSleep(2000)
-			go_to_tiancheng() mSleep(3000)
+			go_to_yaozhizhou() repeat mSleep(2000) until(is_main_interface())
+			go_to_tiancheng() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 		if string.find(results.choose_map,'2') then
 			open_map() mSleep(2000)
-			go_to_naifu() mSleep(2000)
-			go_to_dizhiguancezhan() mSleep(3000)
+			go_to_naifu() repeat mSleep(2000) until(is_main_interface())
+			go_to_dizhiguancezhan() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 		if string.find(results.choose_map,'3') then
 			open_map() mSleep(2000)
-			go_to_yingzhidao() mSleep(2000)
-			go_to_yuejiantai() mSleep(3000)
+			go_to_yingzhidao() repeat mSleep(2000) until(is_main_interface())
+			go_to_yuejiantai() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 	end
