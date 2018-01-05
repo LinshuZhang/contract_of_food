@@ -199,7 +199,7 @@
             },
             {
                "id" : "choose_map",
-               "list" : "格瑞洛,耀之洲,奈芙拉斯特",
+               "list" : "格瑞洛,耀之洲,奈芙拉斯特,樱之岛",
                "select" : "0@2",
                "size" : "30",
                "type" : "CheckBoxGroup",
@@ -256,6 +256,15 @@
                "type" : "RadioGroup",
                "orientation" : "horizontal",
                "color" : "0,0,0"
+            },
+            {
+	            "id" : "is_logging",
+	            "list" : "是否关闭消息提醒",
+	            "select" : "",
+	            "size" : "30",
+	            "type" : "CheckBoxGroup",
+	            "orientation" : "horizontal",
+	            "color" : "0,0,225"
             },
             {
                "align" : "left",

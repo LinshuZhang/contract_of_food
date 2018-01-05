@@ -54,6 +54,11 @@ function go_to_naifu()
 	tap(428,201)
 end
 
+function go_to_yingzhidao()
+	logging("去樱之岛")
+	tap(152,250)
+end
+
 function guaji()
 	do_guaji()
 	start_time_guaji = mTime()
@@ -80,10 +85,12 @@ function do_guaji()
 		logging("自动堕神")
 		clear_duoshen()
 	end
-	if string.find(results.content_guaji,'2') or string.find(results.content_guaji,'2') then
+	if string.find(results.content_guaji,'2') or string.find(results.content_guaji,'3') then
 		clear_bawangcan()
 	end
 end
+
+--is_bawangcan_interface()
 
 if results.choose_function == '0' then
 	battle()

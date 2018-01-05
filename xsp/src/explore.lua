@@ -13,6 +13,10 @@ function go_to_dizhiguancezhan()
 	tap(841,474)
 end
 
+function go_to_yuejiantai()
+	logging("去月见台")
+	tap(651,532)
+end
 
 function is_explore_reward_interface()
 	if (isColor(217,258,0xffffff,95)
@@ -52,7 +56,7 @@ end
 
 function is_find_box3()
 	if ((isColor(934,427,0xcc6763,90) and isColor(973,421,0xc95d5c,90) )
-	or (isColor(921,434,0xb3765b,90) and isColor(975,443,0xb27257,90))
+		or (isColor(921,434,0xb3765b,90) and isColor(975,443,0xb27257,90))
 		and not isColor(1225,603,0xffd5ac,90))
 	then
 		logging("发现宝箱3")
@@ -175,6 +179,7 @@ end
 
 function close_victory_interface()
 	tap(1040,709)
+	if isColor(1007,699,0xffbf56,90) then tap(1007,699) end
 end
 
 function deal_with_enemy()
@@ -203,18 +208,18 @@ function is_cave_continue_interface()
 end
 
 function is_add_xinxian_interface()
-if isColor(1226,295,0xffd3a8,90) and isColor(1246,642,0x89c72f,90) then
-logging("新鲜度消耗完毕")
-return true
-else
-return false
-end
+	if isColor(1226,295,0xffd3a8,90) and isColor(1246,642,0x89c72f,90) then
+		logging("新鲜度消耗完毕")
+		return true
+	else
+		return false
+	end
 end
 
 function explore_retreat()
-tap(1038,708)
-logging("撤退")
-mSleep(1000)
+	tap(1038,708)
+	logging("撤退")
+	mSleep(1000)
 end
 
 function deal_with_exploring()
@@ -250,11 +255,11 @@ function deal_with_exploring()
 			choose_cave() mSleep(2000)
 			tap(1228,669) mSleep(1000) logging("继续探索")
 			if is_add_xinxian_interface() then
-			back()
-			explore_retreat()
-			tap(1217,685) --关闭
-			mSleep(1000)
-			
+				back()
+				explore_retreat()
+				tap(1217,685) --关闭
+				mSleep(1000)
+				
 			end
 		end
 		if is_choose_cave_interface() then
@@ -292,20 +297,26 @@ function keep_explore()
 		logging("在主界面")
 		if string.find(results.choose_map,'0') then
 			open_map() mSleep(2000)
-			go_to_geruiluo() mSleep(2000)
-			go_to_beilidao() mSleep(3000)
+			go_to_geruiluo() repeat mSleep(2000) until(is_main_interface())
+			go_to_beilidao() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 		if string.find(results.choose_map,'1') then
 			open_map() mSleep(2000)
-			go_to_yaozhizhou() mSleep(2000)
-			go_to_tiancheng() mSleep(3000)
+			go_to_yaozhizhou() repeat mSleep(2000) until(is_main_interface())
+			go_to_tiancheng() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 		if string.find(results.choose_map,'2') then
 			open_map() mSleep(2000)
-			go_to_naifu() mSleep(2000)
-			go_to_dizhiguancezhan() mSleep(3000)
+			go_to_naifu() repeat mSleep(2000) until(is_main_interface())
+			go_to_dizhiguancezhan() repeat mSleep(3000) until(not is_main_interface())
+			deal_with_exploring()
+		end
+		if string.find(results.choose_map,'3') then
+			open_map() mSleep(2000)
+			go_to_yingzhidao() repeat mSleep(2000) until(is_main_interface())
+			go_to_yuejiantai() repeat mSleep(3000) until(not is_main_interface())
 			deal_with_exploring()
 		end
 	end

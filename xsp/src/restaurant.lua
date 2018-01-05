@@ -34,6 +34,7 @@ function is_restaurant_interface()
 end
 
 function find_bawangcan()
+	keepScreen(true)
 	x, y = findColor({0, 0, 1333, 749}, 
 		{
 			{x=0,y=0,color=0xffffff,offset = 0x090909},
@@ -42,18 +43,22 @@ function find_bawangcan()
 			{x=10,y=17,color=0x3e2b26,offset = 0x090909}
 		},
 		99, 0, 0, 0)
+	keepScreen(false)
 	if x > -1 then
+		tap(x,y+80) 
 		logging("发现霸王餐")
-		tap(x,y+80)
-		mSleep(1500)
+		times =0 
+		repeat
+		mSleep(2500) times = times+1
+		until(is_bawangcan_interface() or times>5)
 	else
 		logging("没有发现霸王餐")
 	end
 end
 
 function is_bawangcan_interface()
-	if isColor(1238,626,0xffd5ac,90) and isColor(795,689,0xedd1b8,90)
-	and isColor(79,689,0xaf9277,90) then
+	if isColor(46,717,0xb5927b,90) and isColor(963,735,0xefd3bd,90) then
+		logging("霸王餐已打开")
 		return true
 	else
 		return false
@@ -62,7 +67,8 @@ end
 
 function bawangcan_battle()
 	logging("教训他")
-	tap(1244,661)
+	tap(1250,661)
+	mSleep(2000)
 end
 
 function bawangcan_battle_begin()
@@ -87,7 +93,7 @@ function deal_with_bawangcan()
 	find_bawangcan() mSleep(1000)
 	if is_bawangcan_interface() then
 		if results.deal_with_bawangcan == '0' then
-			bawangcan_battle() mSleep(2000)
+			bawangcan_battle()
 			bawangcan_battle_begin()
 			keep_skill()
 			while true do
@@ -227,17 +233,17 @@ function clear_bawangcan()
 	repeat to_jingying() mSleep(2000)
 	until(is_jingying_interface())	
 	repeat open_restaurant() 
-	mSleep(2000) 
-	sure_restaurant_reward() 
-	mSleep(2000)
+		mSleep(2000) 
+		sure_restaurant_reward() 
+		mSleep(2000)
 	until(is_restaurant_interface())
 	if string.find(results.content_guaji,'2') then
-	logging("清理霸王餐")
-	deal_with_bawangcan()
+		logging("清理霸王餐")
+		deal_with_bawangcan()
+		mSleep(1000)
 	end
-	mSleep(1000)
 	if string.find(results.content_guaji,'3') then
-	logging("自动备菜")
+		logging("自动备菜")
 		 auto_ready_food()
 	end
 	repeat back() mSleep(1000)
@@ -273,9 +279,7 @@ function open_ready_food()
 end
 
 function is_ready_food_interface()
-	if isColor(124,114,0xfffaf5,90) 
-	and isColor(367,500,0xf2eff9,90) 
-	and isColor(441,498,0xab9e8b,90) then
+	if isColor(367,504,0xf7efff,90) then
 		logging("成功进入备菜窗口")
 		return true
 	else
@@ -314,11 +318,14 @@ end
 function choose_food(food_number)
 	x = 850+(food_number-1)%3*187.5
 	y = 235+zhengchu((food_number-1),3)*204.5
-	tap(x,y)
+	
 	logging("选择第"..food_number.."个食物")
-	mSleep(1000)
-	tap(573,661) --确认制作
-	mSleep(1000)	
+	times = 0
+	repeat tap(x,y) mSleep(2000) times = times+1
+	until(isColor(524,177,0xfffff7,90) or times>3)
+	repeat tap(570,664) 
+	mSleep(2000)
+	until(is_ready_food_interface())
 end
 
 
@@ -332,14 +339,21 @@ function is_menu_open()
 end
 
 function auto_ready_food()
-	open_ready_food()
+	
+	times = 0
+	repeat open_ready_food() times = times+1
+	until(is_ready_food_interface() or times>7)
 	if is_ready_food_interface() then
-		if is_food_empty() then
+		times = 0
+		while is_food_empty() and times<2 do
 			logging("还有空的橱窗")
+			mSleep(20)
 			for hearth_number = 1,2 do
 				if not is_chief_busy(hearth_number) then 
-					choose_hearth(hearth_number)
-					mSleep(2000)
+					
+					times = 0
+					repeat choose_hearth(hearth_number) mSleep(2000) times = times+1
+					until(is_menu_open() or times>1)
 					if is_menu_open() then
 						food_number = tonumber(food_number_iter())
 						choose_food(food_number)
@@ -349,9 +363,9 @@ function auto_ready_food()
 				else
 					logging("厨师"..hearth_number.."正在备菜")
 				end
+				mSleep(20)
 			end
-		else
-			logging("橱窗已满")
+			times = times+1
 		end
 	end
 end

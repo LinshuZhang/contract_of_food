@@ -9,7 +9,7 @@ end
 
 function tap(x, y)
   touchDown(1, x, y);
-  mSleep(time_hold);
+  mSleep(50);
   touchUp(1, x, y);
 end
 
