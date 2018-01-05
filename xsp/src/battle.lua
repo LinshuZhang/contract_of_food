@@ -159,7 +159,7 @@ end
 
 function battle_finish()
 	while is_victory_interface() or is_battle_end_interface() do
-		tap(1240,703) mSleep(2000) 
+		tap(1240,703) mSleep(3000) 
 	end
 end
 
